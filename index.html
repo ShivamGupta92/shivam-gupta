@@ -463,6 +463,8 @@
           </ul>
         </div>
         <form class="contactMeForm contact-form reveal" method="post">
+          <!-- honeypot: bots fill this, humans never see it -->
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
           <div class="form-row">
             <label class="field"><span>Name</span><input type="text" name="name" placeholder="Your name" required></label>
             <label class="field"><span>Email</span><input type="email" name="email" placeholder="you@example.com" required></label>

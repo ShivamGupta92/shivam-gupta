@@ -155,9 +155,9 @@
   /* ---------- Footer year ---------- */
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  /* ---------- Contact form (Google Apps Script backend) ---------- */
-  const ACTION =
-    "https://script.google.com/macros/s/AKfycbxITdweM4ReGodmudKFNx4sFpvhS4sRyVaLzRPMqdp9muNQWk6RykOEKw5YshnQ9AQ/exec";
+  /* ---------- Contact form (Web3Forms) ---------- */
+  // Get a free access key at https://web3forms.com (submissions arrive by email).
+  const WEB3FORMS_ACCESS_KEY = "5d8bbbfd-4221-4be8-b117-4e706ee81be7";
 
   const form = document.querySelector(".contactMeForm");
 
@@ -168,28 +168,38 @@
     const errorBox = form.querySelector(".error-message");
     const sentBox = form.querySelector(".sent-message");
 
+    const fail = (msg) => {
+      loading.classList.remove("d-block");
+      errorBox.textContent = msg;
+      errorBox.classList.add("d-block");
+    };
+
     loading.classList.add("d-block");
     errorBox.classList.remove("d-block");
     sentBox.classList.remove("d-block");
 
-    fetch(ACTION, { method: "POST", body: new FormData(form) })
-      .then((response) => {
-        if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-        return response.json();
-      })
-      .then((data) => {
-        loading.classList.remove("d-block");
-        if (data.result === "success") {
+    if (WEB3FORMS_ACCESS_KEY.startsWith("REPLACE")) {
+      fail("The form isn't configured yet — please email me directly at shivamgupta5203@gmail.com.");
+      return;
+    }
+
+    const data = new FormData(form);
+    data.append("access_key", WEB3FORMS_ACCESS_KEY);
+    data.append("from_name", "Portfolio contact form");
+
+    fetch("https://api.web3forms.com/submit", { method: "POST", body: data })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.success) {
+          loading.classList.remove("d-block");
           sentBox.classList.add("d-block");
           form.reset();
         } else {
-          throw new Error(data.result || "Form submission failed.");
+          throw new Error(result.message || "Submission failed.");
         }
       })
       .catch((error) => {
-        loading.classList.remove("d-block");
-        errorBox.textContent = "Couldn't send — please email me directly. (" + error.message + ")";
-        errorBox.classList.add("d-block");
+        fail("Couldn't send — please email me directly at shivamgupta5203@gmail.com. (" + error.message + ")");
       });
   });
 })();
