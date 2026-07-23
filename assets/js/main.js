@@ -71,12 +71,12 @@
     ["t-prompt", "shivam@production", 0], ["t-cmd", " $ ", 0], ["t-cmd", "whoami", 28], ["", "\n", 0],
     ["t-out", "AI engineer — LLM · RAG · voice systems", 8], ["", "\n", 0],
     ["t-prompt", "shivam@production", 0], ["t-cmd", " $ ", 0], ["t-cmd", "deploy expertly-voice --to prod", 24], ["", "\n", 0],
-    ["t-out", "serving real clients · 100 concurrent calls ", 8], ["t-ok", "✓", 0], ["", "\n", 0],
-    ["t-out", "latency: 7-8s → <600ms ", 8], ["t-ok", "✓", 0], ["", "\n", 0],
+    ["t-out", "serving real clients · with concurrent calls ", 8], ["t-ok", "✓", 0], ["", "\n", 0],
+    ["t-out", "latency: 7-8s → <900ms ", 8], ["t-ok", "✓", 0], ["", "\n", 0],
     ["t-prompt", "shivam@production", 0], ["t-cmd", " $ ", 0], ["t-cmd", "eval synapse --metric recall@5", 24], ["", "\n", 0],
     ["t-out", "0.40 → 0.90 · hybrid retrieval + reranking ", 8], ["t-ok", "✓", 0], ["", "\n", 0],
     ["t-prompt", "shivam@production", 0], ["t-cmd", " $ ", 0], ["t-cmd", "ls publications/", 24], ["", "\n", 0],
-    ["t-out", "ieee-2024  ieee-2025  springer-2025", 8], ["", "\n", 0],
+    ["t-out", "ieee-2024  ieee-2024  springer-2026  +1-in-press", 8], ["", "\n", 0],
     ["t-prompt", "shivam@production", 0], ["t-cmd", " $ ", 0],
   ];
 
